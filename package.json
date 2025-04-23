@@ -21,14 +21,14 @@
     "directories": {
       "output": "dist"
     },
+    "win": {
+      "icon": "logo.ico"
+    },
     "files": [
       "main.js",
       "package.json",
       "logo.ico",
       "public/app_backend.exe"
-    ],
-    "win": {
-      "icon": "logo.ico"
-    }
+    ]
   }
 }
