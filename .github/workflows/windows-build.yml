@@ -20,7 +20,7 @@ jobs:
     - name: Install Python dependencies
       run: pip install -r backend/requirements.txt
 
-    - name: Build app.py as EXE using PyInstaller
+    - name: Build backend EXE
       run: |
         pip install pyinstaller
         pyinstaller backend/app.py --noconsole --onefile --distpath backend --name app_backend
@@ -39,5 +39,5 @@ jobs:
     - name: Upload EXE Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: jiyu_scheduler_app
+        name: 지유_근무_스케줄러
         path: dist/*.exe
