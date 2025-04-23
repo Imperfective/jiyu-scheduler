@@ -1,5 +1,5 @@
 # jiyu-scheduler
-# 📦 지유 근무 스케줄러 (Windows 자동 빌드용)
+# 📦 근무 스케줄러 (Windows 자동 빌드용)
 
 이 프로젝트는 `Electron + Python (Streamlit)` 기반의 데스크탑 근무 스케줄 생성기입니다.  
 `GitHub Actions`를 통해 **자동으로 Windows EXE 파일을 빌드**합니다.
