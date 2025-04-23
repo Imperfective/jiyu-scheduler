@@ -32,12 +32,13 @@ jobs:
 
       - name: Check GH_TOKEN presence
         run: |
-          if [ -z "${{ secrets.GH_TOKEN }}" ]; then
-            echo "GH_TOKEN not found!"
+          if (-not "${{ secrets.GH_TOKEN }}") {
+            Write-Host "GH_TOKEN not found!"
             exit 1
-          else
-            echo "GH_TOKEN is set (masked)"
-          fi
+          } else {
+            Write-Host "GH_TOKEN is set (masked)"
+          }
+        shell: pwsh
 
       - name: Build the EXE
         run: npm run dist
