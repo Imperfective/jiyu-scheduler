@@ -14,7 +14,7 @@ function createWindow () {
 }
 
 app.whenReady().then(() => {
-  const exePath = path.join(__dirname, 'backend', 'app_backend.exe');
+  const exePath = path.join(process.resourcesPath, 'backend', 'app_backend.exe');
 
   exec(`start "" "${exePath}"`, (err, stdout, stderr) => {
     if (err) {
