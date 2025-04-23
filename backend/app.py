@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
@@ -14,7 +13,6 @@ month = st.sidebar.selectbox("월 선택", list(range(1, 13)), index=datetime.no
 
 people_input = st.sidebar.text_area("👥 전체 인원 (쉼표로 구분)", "윤, 수, 희, 차, 세, 송, 다, 아, 현, 지")
 mandatory_input = st.sidebar.text_input("📌 매일 포함되어야 할 인원 (쉼표)", "윤, 수, 희, 차")
-
 extra_input = st.sidebar.text_area("🔥 추가 근무 가능자 (이름:횟수, 쉼표로 구분)", "윤:2, 수:2, 희:2, 차:2, 지:2, 현:2, 세:1, 송:1, 다:1, 아:1")
 vacation_input = st.sidebar.text_area("🏖️ 휴무 요청 (이름-날짜, 줄바꿈 구분)", "윤-5,6,10,11\n수-17,18,29\n희-11,12")
 
@@ -75,6 +73,21 @@ if submit:
     schedule = generate_schedule(year, month, people, mandatory, extra, vacations)
     df = pd.DataFrame.from_dict(schedule, orient='index')
     df.columns = [f"근무자{i+1}" for i in range(df.shape[1])]
-    st.subheader("✅ 생성된 스케줄")
-    st.dataframe(df)
-    st.download_button("📥 엑셀로 저장", df.to_csv(index=True).encode('utf-8-sig'), file_name=f"{year}_{month}_스케줄.csv")
+
+    tab1, tab2 = st.tabs(["📋 표 보기", "📆 캘린더 보기"])
+
+    with tab1:
+        st.subheader("✅ 생성된 스케줄 (표 형태)")
+        st.dataframe(df, use_container_width=True)
+        st.download_button("📥 엑셀로 저장", df.to_csv(index=True).encode('utf-8-sig'), file_name=f"{year}_{month}_스케줄.csv")
+
+    with tab2:
+        st.subheader("📆 캘린더 형태는 추후 추가 예정")
+        st.markdown("👉 현재는 표 기반 탭으로 구성되어 있으며, SVG 캘린더는 추후 연결 가능")
+
+    with st.expander("📌 이번 달 휴무자 보기", expanded=True):
+        휴무출력 = []
+        for name, days in vacations.items():
+            for day in days:
+                휴무출력.append(f"✅ **{name}** – {month}월 {day}일")
+        st.markdown("<br>".join(휴무출력), unsafe_allow_html=True)
