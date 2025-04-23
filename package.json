@@ -14,7 +14,8 @@
     "electron-builder": "^24.8.0"
   },
   "build": {
-    "asar": false,
+    "asar": true,
+    "asarUnpack": ["backend/app_backend.exe"],
     "appId": "com.jiyu.scheduler",
     "productName": "지유 근무 스케줄러",
     "directories": {
