@@ -15,12 +15,18 @@
   },
   "build": {
     "asar": true,
-    "asarUnpack": ["backend/app_backend.exe"],
+    "asarUnpack": ["public/app_backend.exe"],
     "appId": "com.jiyu.scheduler",
     "productName": "지유 근무 스케줄러",
     "directories": {
       "output": "dist"
     },
+    "files": [
+      "main.js",
+      "package.json",
+      "logo.ico",
+      "public/app_backend.exe"
+    ],
     "win": {
       "icon": "logo.ico"
     }
