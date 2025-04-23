@@ -10,20 +10,20 @@ function createWindow () {
       nodeIntegration: true
     }
   });
-  win.loadURL('http://localhost:8501'); // Streamlit 기본 포트
+  win.loadURL('http://localhost:8501');
 }
 
 app.whenReady().then(() => {
-  // Streamlit이 아닌 app_backend.exe 실행
-  exec('start /min "" "backend\\app_backend.exe"', (err, stdout, stderr) => {
+  const exePath = path.join(__dirname, 'backend', 'app_backend.exe');
+
+  exec(`start "" "${exePath}"`, (err, stdout, stderr) => {
     if (err) {
       console.error('app_backend.exe 실행 오류:', err);
       return;
     }
   });
 
-  // Streamlit 서버가 완전히 뜨는 시간 고려
   setTimeout(() => {
     createWindow();
-  }, 5000);  // 필요 시 더 늘려도 됨
+  }, 5000);
 });
