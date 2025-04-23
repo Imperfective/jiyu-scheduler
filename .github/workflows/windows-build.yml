@@ -2,8 +2,7 @@ name: Build Windows EXE
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -11,40 +10,34 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
 
-      - name: Install Python requirements
-        run: pip install -r backend/requirements.txt
+    - name: Build app.py as EXE using PyInstaller
+      run: |
+        pip install pyinstaller
+        pyinstaller app.py --noconsole --onefile --distpath backend --name app_backend
 
-      - name: Install Node modules
-        run: npm install
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-      - name: Check GH_TOKEN presence
-        run: |
-          if (-not "${{ secrets.GH_TOKEN }}") {
-            Write-Host "GH_TOKEN not found!"
-            exit 1
-          } else {
-            Write-Host "GH_TOKEN is set (masked)"
-          }
-        shell: pwsh
+    - name: Install Node.js dependencies
+      run: npm install
 
-      - name: Build the EXE
-        run: npm run dist
+    - name: Build Electron App
+      run: npm run dist
 
-      - name: Upload executable
-        uses: actions/upload-artifact@v4
-        with:
-          name: jiyu_scheduler_exe_EXE
-          path: dist/*.exe
+    - name: Upload EXE Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: jiyu_scheduler_app
+        path: dist/*.exe
