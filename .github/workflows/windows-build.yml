@@ -23,7 +23,7 @@ jobs:
     - name: Build app.py as EXE using PyInstaller
       run: |
         pip install pyinstaller
-        pyinstaller app.py --noconsole --onefile --distpath backend --name app_backend
+        pyinstaller backend/app.py --noconsole --onefile --distpath backend --name app_backend
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
