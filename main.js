@@ -14,15 +14,17 @@ function createWindow () {
 }
 
 app.whenReady().then(() => {
-  const exePath = path.join(process.resourcesPath, 'backend', 'app_backend.exe');
+  // 빌드 시 asarUnpack으로 포함된 위치에 맞춰 경로 수정
+  const exePath = path.join(process.resourcesPath, 'public', 'app_backend.exe');
 
   exec(`start "" "${exePath}"`, (err, stdout, stderr) => {
     if (err) {
-      console.error('app_backend.exe 실행 오류:', err);
+      console.error('❌ app_backend.exe 실행 오류:', err);
       return;
     }
   });
 
+  // Streamlit 서버가 실행되기를 기다린 후 창 열기
   setTimeout(() => {
     createWindow();
   }, 5000);
