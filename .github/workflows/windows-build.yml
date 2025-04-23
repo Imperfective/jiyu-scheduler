@@ -39,5 +39,5 @@ jobs:
     - name: Upload EXE Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: 지유_근무_스케줄러
+        name: jiyu_schedular
         path: dist/*.exe
