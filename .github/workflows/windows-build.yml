@@ -39,5 +39,5 @@ jobs:
     - name: Upload EXE Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: jiyu_schedular
+        name: jiyu_scheduler_app   # 오타 수정 (schedular → scheduler)
         path: dist/*.exe
