@@ -11,17 +11,18 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: 3.9
 
       - name: Install Python requirements
         run: pip install -r backend/requirements.txt
@@ -29,8 +30,14 @@ jobs:
       - name: Install Node modules
         run: npm install
 
-      - name: Check if GH_TOKEN is available
-        run: echo "GH_TOKEN is set to: ${{ secrets.GH_TOKEN }}"
+      - name: Check GH_TOKEN presence
+        run: |
+          if [ -z "${{ secrets.GH_TOKEN }}" ]; then
+            echo "GH_TOKEN not found!"
+            exit 1
+          else
+            echo "GH_TOKEN is set (masked)"
+          fi
 
       - name: Build the EXE
         run: npm run dist
