@@ -5,25 +5,23 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --publish never"
+    "dist": "electron-builder"
   },
-  "author": "Roy",
+  "author": "너",
   "license": "MIT",
   "devDependencies": {
     "electron": "^28.0.0",
     "electron-builder": "^24.8.0"
   },
-  "dependencies": {
-    "python-shell": "^5.0.0"
-  },
   "build": {
+    "asar": false,
     "appId": "com.jiyu.scheduler",
     "productName": "지유 근무 스케줄러",
-    "win": {
-      "icon": "logo.ico"
-    },
     "directories": {
       "output": "dist"
+    },
+    "win": {
+      "icon": "logo.ico"
     }
   }
 }
