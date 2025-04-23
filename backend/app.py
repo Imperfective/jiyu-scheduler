@@ -91,3 +91,7 @@ if submit:
             for day in days:
                 휴무출력.append(f"✅ **{name}** – {month}월 {day}일")
         st.markdown("<br>".join(휴무출력), unsafe_allow_html=True)
+
+if __name__ == "__main__":
+    import os
+    os.system("streamlit run app.py")
