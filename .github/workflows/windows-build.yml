@@ -1,0 +1,37 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install Python requirements
+      run: pip install -r backend/requirements.txt
+
+    - name: Install Node modules
+      run: npm install
+
+    - name: Build the EXE
+      run: npm run dist
+
+    - name: Upload executable
+      uses: actions/upload-artifact@v3
+      with:
+        name: 지유근무스케줄러_EXE
+        path: dist/*.exe
