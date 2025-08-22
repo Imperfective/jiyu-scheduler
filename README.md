@@ -1,12 +1,12 @@
 # jiyu-scheduler
-# 📦 근무 스케줄러 (Windows 자동 빌드용)
+# 근무 스케줄러 (Windows 자동 빌드용)
 
 이 프로젝트는 `Electron + Python (Streamlit)` 기반의 데스크탑 근무 스케줄 생성기입니다.  
 `GitHub Actions`를 통해 **자동으로 Windows EXE 파일을 빌드**합니다.
 
 ---
 
-## 🚀 기능 요약
+## 기능 요약
 
 - 근무자 자동 배정 (하루 6명)
 - 필수 인원 조건 / 휴무 요청 반영
@@ -16,7 +16,7 @@
 
 ---
 
-## 🧪 GitHub Actions 자동 빌드 사용법
+## GitHub Actions 자동 빌드 사용법
 
 1. 이 레포지토리를 GitHub에 Push (예: `main` 브랜치)
 2. GitHub Actions가 자동으로 실행됨
@@ -24,7 +24,7 @@
 
 ---
 
-## 🛠️ 로컬 개발 방법 (선택)
+## 로컬 개발 방법 (선택)
 
 ```bash
 npm install
@@ -36,7 +36,7 @@ npm start
 
 ---
 
-## ✅ 요구사항
+## 요구사항
 
 - Node.js 18 이상
 - Python 3.9 이상
@@ -53,7 +53,7 @@ npm start
 
 ---
 
-## 👏 만든 사람
+## 만든 사람
 
 - 개발자: minkyu, kim
 
